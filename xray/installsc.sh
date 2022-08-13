@@ -70,7 +70,7 @@ cat > /etc/xray/config.json << END
                 "clients": [
                     {
                         "password": "${uuid}",
-                        "email": "${domain}_trojan_tcp"
+                        "email": "trojan_tcp@mantap.com"
                     }
                 ],
                 "fallbacks": [
@@ -96,7 +96,7 @@ cat > /etc/xray/config.json << END
                 "clients": [
                     {
                         "password": "${uuid}",
-                        "email": "${domain}_trojan_grpc"
+                        "email": "trojan_grpc@mantap.com"
                     }
                 ],
                 "fallbacks": [
@@ -109,6 +109,28 @@ cat > /etc/xray/config.json << END
                 "network": "grpc",
                 "grpcSettings": {
                     "serviceName": "${customPath}trojangrpc"
+                }
+            }
+        },
+        {
+            "port": 31301,
+            "listen": "127.0.0.1",
+            "protocol": "vless",
+            "tag": "VLESSGRPC",
+            "settings": {
+                "clients": [
+                    {
+                        "id": "${uuid}", // 填写你的 UUID
+                        "add": "$domain",
+                        "email": "vless_grpc@example.com"
+                    }
+                ],
+                "decryption": "none"
+            },
+            "streamSettings": {
+                "network": "grpc",
+                "grpcSettings": {
+                    "serviceName": "${customPath}grpc"
                 }
             }
         },
