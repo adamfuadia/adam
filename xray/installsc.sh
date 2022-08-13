@@ -1,3 +1,10 @@
+uuid=b8458948-a630-4e6d-809a-230b2223ff3d
+
+# // Certificate File
+path_crt="/etc/xray/xray.crt"
+path_key="/etc/xray/xray.key"
+
+cat > /etc/xray/config.json << END
 {
     "log": {
         "loglevel": "warning"
@@ -9,7 +16,7 @@
             "settings": {
                 "clients": [
                     {
-                        "id": "", // 填写你的 UUID
+                        "id": "${uuid}", // isi UUID
                         "flow": "xtls-rprx-direct",
                         "level": 0,
                         "email": "love@example.com"
@@ -55,20 +62,20 @@
             }
         },
         {
-            "port": 1310,
+            "port": 31296,
             "listen": "127.0.0.1",
             "protocol": "trojan",
+            "tag": "trojantcp",
             "settings": {
                 "clients": [
                     {
-                        "password": "", // 填写你的密码
-                        "level": 0,
-                        "email": "love@example.com"
+                        "password": "${uuid}",
+                        "email": "${domain}_trojan_tcp"
                     }
                 ],
                 "fallbacks": [
                     {
-                        "dest": 80 // 或者回落到其它也防探测的代理
+                        "dest": 31300 // 或者回落到其它也防探测的代理
                     }
                 ]
             },
@@ -81,13 +88,38 @@
             }
         },
         {
+            "port": 31304,
+            "listen": "127.0.0.1",
+            "protocol": "trojan",
+            "tag": "trojangRPCTCP",
+            "settings": {
+                "clients": [
+                    {
+                        "password": "${uuid}",
+                        "email": "${domain}_trojan_grpc"
+                    }
+                ],
+                "fallbacks": [
+                    {
+                        "dest": 31300 // 或者回落到其它也防探测的代理
+                    }
+                ]
+            },
+            "streamSettings": {
+                "network": "grpc",
+                "grpcSettings": {
+                    "serviceName": "${customPath}trojangrpc"
+                }
+            }
+        },
+        {
             "port": 1234,
             "listen": "127.0.0.1",
             "protocol": "vless",
             "settings": {
                 "clients": [
                     {
-                        "id": "", // 填写你的 UUID
+                        "id": "${uuid}", // 填写你的 UUID
                         "level": 0,
                         "email": "love@example.com"
                     }
@@ -110,7 +142,7 @@
             "settings": {
                 "clients": [
                     {
-                        "id": "", // 填写你的 UUID
+                        "id": "${uuid}", // 填写你的 UUID
                         "level": 0,
                         "email": "love@example.com"
                     }
@@ -139,7 +171,7 @@
             "settings": {
                 "clients": [
                     {
-                        "id": "", // 填写你的 UUID
+                        "id": "${uuid}", // 填写你的 UUID
                         "level": 0,
                         "email": "love@example.com"
                     }
