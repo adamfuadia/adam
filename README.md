@@ -9,5 +9,5 @@ XRAY MULTI PORT 443
 * TROJAN WS: 443
 * TROJAN TCP TLS: 443
 
-# Script by Sulaiman L
+# Script by adam
 .
