@@ -18,7 +18,6 @@ cat > /etc/xray/config.json << END
                     {
                         "id": "${uuid}", // isi UUID
                         "flow": "xtls-rprx-direct",
-                        "level": 0,
                         "email": "love@example.com"
                     }
                 ],
@@ -165,7 +164,6 @@ cat > /etc/xray/config.json << END
                 "clients": [
                     {
                         "id": "${uuid}", // 填写你的 UUID
-                        "level": 0,
                         "email": "love@example.com"
                     }
                 ]
@@ -194,7 +192,6 @@ cat > /etc/xray/config.json << END
                 "clients": [
                     {
                         "id": "${uuid}", // 填写你的 UUID
-                        "level": 0,
                         "email": "love@example.com"
                     }
                 ]
